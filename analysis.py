@@ -2,6 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import datetime
 
+with open('workHours.csv')
+
 df = pd.read_csv('workHours.csv')
 #df.at['SumPay', 'Total'] = df['Total'].sum()
 df.sort_values('Date')
