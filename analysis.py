@@ -2,7 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import datetime
 
-with open('workHours.csv')
+with open('workHours.csv') as csv_file:
+    return
 
 df = pd.read_csv('workHours.csv')
 #df.at['SumPay', 'Total'] = df['Total'].sum()
