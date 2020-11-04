@@ -12,6 +12,10 @@ df['Day'] = pd.to_datetime(df['Date']).dt.strftime('%A')
 df['Month'] = pd.to_datetime(df['Date']).dt.strftime('%B')
 df = df.sort_values(['Month'])
 
+months = []
+for i in df['Month']:
+    if i not in months:
+        months.append(i)
 
 
 # for i in df['Month']:
