@@ -10,7 +10,12 @@ df = pd.read_csv('workHours.csv')
 df['Date'] = pd.to_datetime(df['Date']).dt.strftime("%d.%m.%y")
 df['Day'] = pd.to_datetime(df['Date']).dt.strftime('%A')
 df['Month'] = pd.to_datetime(df['Date']).dt.strftime('%B')
-df['MonthAVG'] = df.apply(lambda x: for x in )
+df = df.sort_values(['Month'])
+
+
+
+# for i in df['Month']:
+
 print(df)
 # df.plot(x='Day', y='Total')
 # plt.show()
@@ -18,10 +23,10 @@ print(df)
 
 #Id want the groups to be Days
 #Id want the diff bars be months
-plt.title('Pay per month AVG')
-plt.ylabel('£')
-plt.xlabel(df['Date'])
-plt.plot()
+# plt.title('Pay per month AVG')
+# plt.ylabel('£')
+# plt.xlabel(df['Date'])
+# plt.plot()
 
 #For each day in days
     #Plot month avg
