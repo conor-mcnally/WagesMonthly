@@ -2,49 +2,25 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from datetime import datetime
 
-
-
+#Read CSV
 df = pd.read_csv('workHours.csv')
-# df.at['SumPay', 'Total'] = df['Total'].sum()
 
+#Convert dates to datetime object
+#Then convert to individual date values
 df['Date'] = pd.to_datetime(df['Date']).dt.strftime("%d.%m.%y")
 df['Day'] = pd.to_datetime(df['Date']).dt.strftime('%A')
 df['Month'] = pd.to_datetime(df['Date']).dt.strftime('%B')
 df = df.sort_values(['Month'])
 
-months = []
-for i in df['Month']:
-    if i not in months:
-        months.append(i)
 
+#Aggregate mean by month & day
+groupby2 = df.groupby(['Month', 'Day'])['Total'].agg(['mean']).reset_index()
 
-# for i in df['Month']:
-
-print(df)
-# df.plot(x='Day', y='Total')
-# plt.show()
-
-
-#Id want the groups to be Days
-#Id want the diff bars be months
-# plt.title('Pay per month AVG')
-# plt.ylabel('£')
-# plt.xlabel(df['Date'])
-# plt.plot()
-
-#For each day in days
-    #Plot month avg
-
-# plt.title('Pay per month Avg')
-# plt.ylabel('£')
-# plt.xlabel('Days')
-# for i in df:
-#     plt.plot(df['Day'], df['Total'])
-
-# plt.show()
-# plt.figure(figsize=(13, 5))
-# plt.title("Avg pay per day per month")
-# plt.ylabel("£££")
-# plt.xlabel("Day")
-# plt.bar(df['Date'], df['Total'])
-# plt.show()
+#Pivot, get the data in form that makes it
+#easy to plot group value
+fig = groupby2.pivot(index="Day", columns="Month", values='mean').plot(kind='bar', figsize=(12, 6))
+plt.title('Mean pay by day per month')
+plt.xlabel('Day')
+plt.ylabel('Amount (£)')
+plt.legend(loc='upper right')
+plt.show()
