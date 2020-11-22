@@ -15,7 +15,7 @@ def store():
 
         if(result == 'yes'):
             print('here')
-            with open('workHours.csv', 'a') as file:
+            with open('workHours.csv', 'a', newline='') as file:
                 writer = csv.writer(file)
                 writer.writerow([adate, aamount])
             file.close()
@@ -36,7 +36,7 @@ root.geometry("500x300")
 
 #Define all variables for GUI components
 date = StringVar()
-amount = IntVar()
+amount = DoubleVar()
 #This is just so the default is not zero for easier entry
 amount.set("")
 

@@ -4,7 +4,6 @@ from datetime import datetime
 
 #Read CSV
 df = pd.read_csv('workHours.csv')
-
 #Convert dates to datetime object
 #Then convert to individual date values
 df['Date'] = pd.to_datetime(df['Date']).dt.strftime("%d.%m.%y")
